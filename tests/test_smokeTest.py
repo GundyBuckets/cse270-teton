@@ -9,10 +9,13 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from selenium.webdriver.chrome.options import Options
 
 class TestSmokeTest():
   def setup_method(self, method):
-    self.driver = webdriver.Chrome()
+    options = Options()
+    options.add_argument("--headless=new")
+    self.driver = webdriver.Chrome(options=options)
     self.vars = {}
   
   def teardown_method(self, method):
@@ -28,7 +31,7 @@ class TestSmokeTest():
     self.driver.find_element(By.ID, "username").send_keys("Jill")
     self.driver.find_element(By.ID, "password").send_keys("notarealpassword")
     self.driver.find_element(By.CSS_SELECTOR, ".mysubmit:nth-child(4)").click()
-    assert self.driver.find_element(By.CSS_SELECTOR, ".errorMessage").text == "Invalid username and password."
+    WebDriverWait(self.driver, 30).until(expected_conditions.text_to_be_present_in_element((By.CSS_SELECTOR, ".errorMessage"), "Invalid username and password."))
   
   def test_directory(self):
     self.driver.get("https://gundybuckets.github.io/cse270-teton/")
