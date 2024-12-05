@@ -19,7 +19,7 @@ class TestSmokeTest():
     self.driver.quit()
   
   def test_adminPage(self):
-    self.driver.get("http://127.0.0.1:5500/cse270-teton/teton/1.6/index.html")
+    self.driver.get("https://gundybuckets.github.io/cse270-teton/")
     self.driver.set_window_size(1552, 832)
     self.driver.find_element(By.LINK_TEXT, "Admin").click()
     elements = self.driver.find_elements(By.ID, "username")
@@ -31,7 +31,7 @@ class TestSmokeTest():
     assert self.driver.find_element(By.CSS_SELECTOR, ".errorMessage").text == "Invalid username and password."
   
   def test_directory(self):
-    self.driver.get("http://127.0.0.1:5500/cse270-teton/teton/1.6/index.html")
+    self.driver.get("https://gundybuckets.github.io/cse270-teton/")
     self.driver.set_window_size(1552, 832)
     self.driver.find_element(By.LINK_TEXT, "Directory").click()
     self.driver.find_element(By.ID, "directory-grid").click()
@@ -42,7 +42,7 @@ class TestSmokeTest():
     assert len(elements) > 0
   
   def test_homePageContent(self):
-    self.driver.get("http://127.0.0.1:5500/cse270-teton/teton/1.6/index.html")
+    self.driver.get("https://gundybuckets.github.io/cse270-teton/")
     self.driver.set_window_size(1552, 832)
     elements = self.driver.find_elements(By.LINK_TEXT, "Join Us")
     assert len(elements) > 0
@@ -50,7 +50,7 @@ class TestSmokeTest():
     assert self.driver.find_element(By.CSS_SELECTOR, "section > h3").text == "Welcome to the Teton Chamber of Commerce Signup Wizard!"
   
   def test_joinPage(self):
-    self.driver.get("http://127.0.0.1:5500/cse270-teton/teton/1.6/index.html")
+    self.driver.get("https://gundybuckets.github.io/cse270-teton/")
     self.driver.set_window_size(1552, 832)
     self.driver.find_element(By.LINK_TEXT, "Join").click()
     elements = self.driver.find_elements(By.NAME, "fname")
@@ -68,7 +68,7 @@ class TestSmokeTest():
     assert len(elements) > 0
   
   def test_siteHeaderLogoandTitle(self):
-    self.driver.get("http://127.0.0.1:5500/cse270-teton/teton/1.6/index.html")
+    self.driver.get("https://gundybuckets.github.io/cse270-teton/")
     self.driver.set_window_size(1507, 816)
     elements = self.driver.find_elements(By.CSS_SELECTOR, ".header-logo img")
     assert len(elements) > 0
